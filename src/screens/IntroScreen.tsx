@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -10,8 +10,6 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-// logo
 import LogoWhite from '../assets/logo.png';
 
 const { width } = Dimensions.get('window');
@@ -24,13 +22,7 @@ interface Product {
   category: string;
 }
 
-// ────────────────────────────────────────────────────────────
-
 const IntroScreen: React.FC = () => {
-  /* ------------------------------------------------------------------ */
-  /*  Data                                                               */
-  /* ------------------------------------------------------------------ */
-  // hero products (will scroll horizontally)
   const heroProducts: Product[] = [
     { id: 1, brand: 'Featured', price: '$2 299', image: '', category: 'jacket' },
     { id: 2, brand: 'Premium',  price: '$1 899', image: '', category: 'coat'   },
@@ -49,9 +41,6 @@ const IntroScreen: React.FC = () => {
     { id: 6, brand: 'Brand', price: '$XXX', image: '', category: 'pants' },
   ];
 
-  /* ------------------------------------------------------------------ */
-  /*  Render helpers                                                     */
-  /* ------------------------------------------------------------------ */
   const renderHeroCard = (p: Product) => (
     <TouchableOpacity key={p.id} style={styles.heroCard}>
       <View style={styles.heroImage}>
@@ -82,9 +71,6 @@ const IntroScreen: React.FC = () => {
     </TouchableOpacity>
   );
 
-  /* ------------------------------------------------------------------ */
-  /*  Helpers                                                            */
-  /* ------------------------------------------------------------------ */
   const getPlaceholderStyle = (c: string) => {
     switch (c) {
       case 'jacket': return { backgroundColor: '#2C3E50' };
@@ -109,14 +95,11 @@ const IntroScreen: React.FC = () => {
     }
   };
 
-  /* ------------------------------------------------------------------ */
-  /*  JSX                                                                */
-  /* ------------------------------------------------------------------ */
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
 
-      {/* ─── Header ─────────────────────────────────────────────── */}
+      {/* Header */}
       <View style={styles.header}>
         <Image source={LogoWhite} style={styles.logo} resizeMode="contain" />
         <View style={styles.headerIcons}>
@@ -130,7 +113,7 @@ const IntroScreen: React.FC = () => {
         </View>
       </View>
 
-      {/* ─── Content ────────────────────────────────────────────── */}
+      {/* Content */}
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Hero scroll */}
         <View style={styles.heroSection}>
@@ -175,26 +158,14 @@ const IntroScreen: React.FC = () => {
           </ScrollView>
         </View>
       </ScrollView>
-
-      {/* ─── Bottom nav ─────────────────────────────────────────── */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}><Text style={styles.navText}>Home</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.addButton}><Text style={styles.addText}>+</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}><Text style={[styles.navText, styles.inactive]}>Profile</Text></TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
 
-/* ──────────────────────────────────────────────────────────────── */
-/*  Styles – same spacing / sizes you had originally                */
-/* ──────────────────────────────────────────────────────────────── */
-const heroCardWidth = 260; // card width ~ original hero box + margin
+const heroCardWidth = 260;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#FFFFFF' },
-
-  /* Header */
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -218,11 +189,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: '#FF3B30',
   },
-
-  /* Content wrapper */
   content: { flex: 1 },
-
-  /* Hero section (scrolls now) */
   heroSection: {
     paddingVertical: 30,
     backgroundColor: '#FAFAFA',
@@ -253,8 +220,6 @@ const styles = StyleSheet.create({
   heroEmoji: { fontSize: 100 },
   heroBrand: { fontSize: 16, fontWeight: '500', marginTop: 8 },
   heroPrice: { fontSize: 14, color: '#666' },
-
-  /* Generic section */
   section: { paddingHorizontal: 20, paddingVertical: 20 },
   sectionHeader: {
     flexDirection: 'row',
@@ -264,12 +229,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: { fontSize: 20, fontWeight: '600', color: '#000' },
   seeMore: { fontSize: 18, color: '#666' },
-
-  /* Horizontal scroll lists */
   hScroll: { marginLeft: -20 },
   hContent: { paddingLeft: 20, paddingRight: 10 },
-
-  /* Product card */
   productCard: { marginRight: 15, width: 140 },
   productImageContainer: { marginBottom: 8 },
   productImage: { width: 140, height: 160, borderRadius: 12 },
@@ -283,32 +244,6 @@ const styles = StyleSheet.create({
   placeholderEmoji: { fontSize: 40 },
   brandName: { fontSize: 14, color: '#000', marginBottom: 4, fontWeight: '500' },
   productPrice: { fontSize: 14, color: '#666' },
-
-  /* Bottom nav */
-  bottomNav: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingVertical: 20,
-    paddingHorizontal: 20,
-    borderTopWidth: 0.5,
-    borderTopColor: '#E0E0E0',
-    backgroundColor: '#FFFFFF',
-  },
-  navItem: { flex: 1, alignItems: 'center' },
-  navText: { fontSize: 16, color: '#000', fontWeight: '500' },
-  inactive: { color: '#999' },
-  addButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 20,
-  },
-  addText: { fontSize: 24, color: '#FFF', fontWeight: '300' },
 });
 
 export default IntroScreen;
-  

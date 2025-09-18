@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Import your logo
 import LogoWhite from '../assets/logo.png';
 
 const { width, height } = Dimensions.get('window');
